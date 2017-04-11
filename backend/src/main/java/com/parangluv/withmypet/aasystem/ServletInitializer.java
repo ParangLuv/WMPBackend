@@ -1,4 +1,4 @@
-package com.parangluv.withmypet;
+package com.parangluv.withmypet.aasystem;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
