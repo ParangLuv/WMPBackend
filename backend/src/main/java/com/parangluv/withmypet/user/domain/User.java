@@ -11,16 +11,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.parangluv.withmypet.article.domain.Article;
-import com.parangluv.withmypet.board.domain.Board;
-import com.parangluv.withmypet.messagebox.domain.MessageBox;
 import com.parangluv.withmypet.pet.domain.Pet;
-import com.parangluv.withmypet.reply.domain.Reply;
 
 import lombok.Data;
 
@@ -33,12 +28,12 @@ public class User {
 	
 	@OneToMany(mappedBy = "owner")
 	private List<Pet> userPets = new ArrayList<>(); 		// 소유한 펫 리스트
-	@OneToMany(mappedBy = "articleWriter")
-	private List<Article> userArticles = new ArrayList<>();	// 작성한 글 리스트
-	@OneToMany(mappedBy = "replyWriter")
-	private List<Reply> userReplys = new ArrayList<>();		// 작성한 댓글 리스트
-	@OneToOne(mappedBy = "messageBoxOwner")
-	private MessageBox userMessageBox;						// 메세지 박스
+//	@OneToMany(mappedBy = "articleWriter")
+//	private List<Article> userArticles = new ArrayList<>();	// 작성한 글 리스트
+//	@OneToMany(mappedBy = "replyWriter")
+//	private List<Reply> userReplys = new ArrayList<>();		// 작성한 댓글 리스트
+//	@OneToOne(mappedBy = "messageBoxOwner")
+//	private MessageBox userMessageBox;						// 메세지 박스
 	
 	
 	@Column(nullable = false, length = 60)
@@ -52,7 +47,7 @@ public class User {
 	
 
 
-	@Column(nullable = false, length = 2)
+	@Column(nullable = false, columnDefinition="int(2)")
 	private int incorrectPasswordInputNo;					// 비밀번호 틀린 횟수
 	@Column(nullable = false)
 	private boolean isAccountNonExpired;					// 계정만료여부
@@ -61,7 +56,7 @@ public class User {
 	@Column(nullable = false)
 	private boolean isEnabled;								// 계정 활성화 여부
 
-	@Column(nullable = false)
+	@Column(nullable = false, length=20)
 	@Enumerated(EnumType.STRING)
 	private UserAuthority userAuthority;					// 계정 권한타입
 	

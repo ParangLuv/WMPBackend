@@ -12,8 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.parangluv.withmypet.article.domain.Article;
-
 import lombok.Data;
 
 @Data
@@ -26,8 +24,8 @@ public class Board {
 	private String name;											// 게시판 이름
 	@Column(nullable = false)
 	private boolean isDeleted;										// 게시판 논리삭제여부
-	@OneToMany(mappedBy="parentBoard")
-	private List<Article> childArticles = new ArrayList<>();		// 자식 게시물
+//	@OneToMany(mappedBy="parentBoard")
+//	private List<Article> childArticles = new ArrayList<>();		// 자식 게시물
 	
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -35,7 +33,6 @@ public class Board {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modDate;											// 수정 시간
-
-		
+	
 	
 }

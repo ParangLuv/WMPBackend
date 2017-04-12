@@ -1,4 +1,4 @@
-package com.parangluv.withmypet.aasystem;
+package com.parangluv.withmypet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

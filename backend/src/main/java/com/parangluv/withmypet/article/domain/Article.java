@@ -1,5 +1,6 @@
 package com.parangluv.withmypet.article.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,26 +17,28 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.parangluv.withmypet.board.domain.Board;
-import com.parangluv.withmypet.reply.domain.Reply;
 import com.parangluv.withmypet.user.domain.User;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class Article {
+@IdClass(ArticleId.class)
+public class Article{
 	@Id	@GeneratedValue
 	private long id;										// Article Key
 	
-	@ManyToOne
+	
+	@Id @ManyToOne
 	@JoinColumn(name="BOARD")
 	private Board parentBoard;								// 부모 게시판
+	
 	@ManyToOne
 	@JoinColumn(name="USER")
 	private User articleWriter;								// 작성자
 	
-	@OneToMany(mappedBy="parentArticle")
-	private List<Reply> childReplys = new ArrayList<>();	// 자식 댓글 리스트
+//	@OneToMany(mappedBy="parentArticle")
+//	private List<Reply> childReplys = new ArrayList<>();	// 자식 댓글 리스트
 
 
 	@Column(nullable = false, length=80)
