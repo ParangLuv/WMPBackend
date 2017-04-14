@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -28,13 +29,12 @@ public class Article{
 	@Id	@GeneratedValue
 	private long id;										// Article Key
 	
-	
 	@Id @ManyToOne
-	@JoinColumn(name="BOARD")
+	@JoinColumn(name="BOARD", foreignKey = @ForeignKey(name="board"))
 	private Board parentBoard;								// 부모 게시판
 	
 	@ManyToOne
-	@JoinColumn(name="USER")
+	@JoinColumn(name="USER", foreignKey = @ForeignKey(name="writer"))
 	private User articleWriter;								// 작성자
 	
 //	@OneToMany(mappedBy="parentArticle")
