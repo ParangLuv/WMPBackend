@@ -2,12 +2,15 @@ package com.parangluv.withmypet.article.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Embeddable;
+
 import lombok.Data;
 
 @Data
+@Embeddable
 public class ArticleId implements Serializable{
 	private Long board;
-	private Long article;
+	private Long articleId;
 
 	 @Override
 	    public boolean equals(Object o) {
@@ -17,14 +20,14 @@ public class ArticleId implements Serializable{
 	        ArticleId that = (ArticleId) o;
 	 
 	        if (!board.equals(that.board)) return false;
-	        return article.equals(that.article);
+	        return articleId.equals(that.articleId);
 	 
 	    }
 	 
 	    @Override
 	    public int hashCode() {
 	        int result = board.hashCode();
-	        result = 31 * result + article.hashCode();
+	        result = 31 * result + articleId.hashCode();
 	        return result;
 	    }
 
