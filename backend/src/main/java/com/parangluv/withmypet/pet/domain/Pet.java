@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.parangluv.withmypet.breed.domain.Breed;
+import com.parangluv.withmypet.common.domain.CommonEntity;
 import com.parangluv.withmypet.healthnote.domain.HealthNote;
 import com.parangluv.withmypet.user.domain.User;
 
@@ -20,7 +22,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Pet {
+public class Pet extends CommonEntity{
 
 	@Id @GeneratedValue
 	private long id;						// PET KEY
@@ -35,26 +37,17 @@ public class Pet {
 	private String color;					// 펫 색
 	@Column(nullable = true)
 	private String microchip;				// 마이크로칩 번호
-//	private BloodGroup bloodGroup;			// 펫 혈액형
 	
-//	@OneToOne
-//	@JoinColumn(name="BREED")
-//	private Breed breed;					// 품종정보
+	@OneToOne
+	@JoinColumn(name="BREED", foreignKey = @ForeignKey(name = "breed"), nullable = false)
+	private Breed breed;					// 품종정보
 	
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="owner_id"), nullable = false)
+	@JoinColumn(name = "owner", foreignKey = @ForeignKey(name="owner_id"), nullable = false)
 	private User owner;						// 주인
 	
 	@OneToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="healthNote_id"), nullable = false, name="heathNote_id")
 	private HealthNote userPetHealthNote;	// 건강수첩
 	
-	
-	@Column(nullable=false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate;					// 등록날짜
-	
-	@Column(nullable=false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date modDate;					// 수정날짜
 }

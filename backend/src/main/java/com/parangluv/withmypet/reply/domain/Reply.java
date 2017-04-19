@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -23,27 +24,30 @@ import lombok.Data;
 public class Reply extends CommonEntity{
 	
 	@EmbeddedId 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private ReplyId replyId;
 
+	
+	@ManyToOne
+	@JoinColumn(name="replyWriter", foreignKey = @ForeignKey(name="replyWriter"), nullable = false)
+	private User replyWriter;										// 작성자
+	
 	@MapsId("article") 
 	@ManyToOne
+	@org.hibernate.annotations.ForeignKey(name = "articleBoard")
 	@JoinColumns({
-		@JoinColumn(name = "article", referencedColumnName = "articleId", foreignKey=@ForeignKey(name="article")),	
-		@JoinColumn(name = "board", referencedColumnName = "board", foreignKey=@ForeignKey(name="board"))}) 
-	private Article article;							// 부모 게시물
+		@JoinColumn(name = "article", referencedColumnName = "articleId"),	
+		@JoinColumn(name = "board", referencedColumnName = "board")
+		}) 
+	private Article article;										// 부모 게시물
 		
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="USER", foreignKey = @ForeignKey(name = "USER"))
-	private User replyWriter;		// 작성자
-	
 	@Column(nullable=false, columnDefinition="TEXT")
-	private String content;			// 내용
+	private String content;											// 내용
 	
 	@Column(nullable=false)
-	private long parentReply;		// 부모댓글
+	private long parentReply;										// 부모댓글
 	
 	@Column(nullable=false)
-	private int indent;				// 들여쓰기 
+	private boolean indent;											// 들여쓰기 
 
 }

@@ -34,14 +34,14 @@ public class Article extends CommonEntity{
 	@MapsId("board") 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="BOARD", foreignKey = @ForeignKey(name="board"))
-	private Board board;								// 부모게시판
+	private Board board;											// 부모게시판
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="USER", foreignKey = @ForeignKey(name="writer"))
-	private User writer;								// 작성자
+	@ManyToOne
+	@JoinColumn(name="writer", foreignKey = @ForeignKey(name="writer"), nullable = false)
+	private User articleWriter;										// 작성자
 	
 	@OneToMany(mappedBy="article", fetch = FetchType.EAGER)
-	private List<Reply> replys = new ArrayList<>();			// 자식 댓글 리스트
+	private List<Reply> replys = new ArrayList<>();					// 자식 댓글 리스트
 	
 	public List<Reply> getReplys() {
 		if(replys==null){
