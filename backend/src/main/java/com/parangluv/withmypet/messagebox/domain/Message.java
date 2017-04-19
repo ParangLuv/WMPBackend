@@ -26,10 +26,13 @@ import lombok.Data;
 @Entity
 public class Message extends CommonEntity{
 
-	@EmbeddedId @GeneratedValue
-	private MessageId messageId;						// Message Key
+	@Id @GeneratedValue
+	private Long messageId;						// Message Key
 	
-	@MapsId("MESSAGEBOX") 
+	@Column(nullable=false)
+	private Long messageNo;
+
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="MESSAGEBOX", nullable = false, foreignKey = @ForeignKey(name="MESSAGEBOX"))
 	private MessageBox parentMessageBox;	// 부모 메세지 박스

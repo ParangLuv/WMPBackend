@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
 import com.parangluv.withmypet.article.domain.Article;
+import com.parangluv.withmypet.board.domain.Board;
 import com.parangluv.withmypet.common.domain.CommonEntity;
 import com.parangluv.withmypet.user.domain.User;
 
@@ -23,23 +24,20 @@ import lombok.Data;
 @Entity
 public class Reply extends CommonEntity{
 	
-	@EmbeddedId 
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private ReplyId replyId;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long replyId;
 	
+	@Column(nullable=false)
+	private Long replyNo;
+
 	@ManyToOne
 	@JoinColumn(name="replyWriter", foreignKey = @ForeignKey(name="replyWriter"), nullable = false)
 	private User replyWriter;										// 작성자
 	
-	@MapsId("article") 
-	@ManyToOne
-	@org.hibernate.annotations.ForeignKey(name = "articleBoard")
-	@JoinColumns({
-		@JoinColumn(name = "article", referencedColumnName = "articleId"),	
-		@JoinColumn(name = "board", referencedColumnName = "board")
-		}) 
-	private Article article;										// 부모 게시물
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="article_id", foreignKey = @ForeignKey(name="article_id"), nullable = false)
+	private Article articleId;										// 부모 게시물
 		
 	@Column(nullable=false, columnDefinition="TEXT")
 	private String content;											// 내용

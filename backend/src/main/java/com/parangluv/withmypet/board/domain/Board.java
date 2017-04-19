@@ -31,7 +31,7 @@ public class Board extends CommonEntity{
 	@Column(nullable = false, length=20)
 	private String boardType;											// 게시판 유형
 	
-	@OneToMany(mappedBy="board")
+	@OneToMany(mappedBy="boardId")
 	private List<Article> articles = new ArrayList<>();					// 자식 게시물
 	
 	public List<Article> getArticle() {
