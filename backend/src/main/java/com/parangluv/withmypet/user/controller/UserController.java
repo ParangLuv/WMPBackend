@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.parangluv.withmypet.user.domain.User;
+import com.parangluv.withmypet.user.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,6 +17,9 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("api/user")
 @Api(value = "Version 0.01")
 public class UserController {
+	
+	@Autowired
+	private UserService us;
 	
 	@ApiOperation(value = "Get Users with pagenation")
 	@RequestMapping(method = RequestMethod.GET)
