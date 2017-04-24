@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.parangluv.withmypet.article.domain.Article;
-import com.parangluv.withmypet.common.domain.CommonEntity;
+import com.parangluv.withmypet.common.entity.CommonEntity;
 
 import lombok.Data;
 

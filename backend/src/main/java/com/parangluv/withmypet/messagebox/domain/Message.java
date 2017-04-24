@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.parangluv.withmypet.common.domain.CommonEntity;
+import com.parangluv.withmypet.common.entity.CommonEntity;
 import com.parangluv.withmypet.user.domain.User;
 
 import lombok.Data;
@@ -44,17 +44,20 @@ public class Message extends CommonEntity{
 
 	@Column(nullable = false, length=40)
 	private String title;					// 제목
+	
 	@Column(nullable = false, columnDefinition="TEXT")
 	private String content;					// 내용
 	
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="bit(1) default 0")
 	private boolean	isOpened;				// 열람여부
 	
-	@Column(nullable = false)
-	private Timestamp openDate;					// 열람시간
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = true)
+	private Date openDate;					// 열람시간
 	
-	@Column(nullable = false)
-	private Timestamp sendDate;					// 발신시간
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	private Date sendDate;					// 발신시간
 	
 }

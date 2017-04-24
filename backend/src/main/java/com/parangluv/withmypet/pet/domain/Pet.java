@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.parangluv.withmypet.breed.domain.Breed;
-import com.parangluv.withmypet.common.domain.CommonEntity;
+import com.parangluv.withmypet.common.entity.CommonEntity;
 import com.parangluv.withmypet.healthnote.domain.HealthNote;
 import com.parangluv.withmypet.user.domain.User;
 
@@ -26,15 +26,19 @@ public class Pet extends CommonEntity{
 
 	@Id @GeneratedValue
 	private long id;						// PET KEY
+	
 	@Column(nullable=false, length=20)
 	private String name;					// 펫 이름
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="bit(1) default 0")
 	private boolean sex;					// 펫 성별
+	
 	@Column(nullable = false, columnDefinition="int(2)")
 	private int age;						// 펫 연령
+	
 	@Column(nullable = true, length=12)
 	private String color;					// 펫 색
+	
 	@Column(nullable = true)
 	private String microchip;				// 마이크로칩 번호
 	

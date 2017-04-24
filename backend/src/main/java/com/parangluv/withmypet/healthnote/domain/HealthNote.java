@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.parangluv.withmypet.common.domain.CommonEntity;
+import com.parangluv.withmypet.common.entity.CommonEntity;
 import com.parangluv.withmypet.pet.domain.Pet;
 
 import lombok.Data;

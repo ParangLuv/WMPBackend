@@ -1,6 +1,7 @@
-package com.parangluv.withmypet.common.domain;
+package com.parangluv.withmypet.common.entity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -15,13 +16,15 @@ import lombok.Data;
 @MappedSuperclass
 public class CommonEntity {
 	
-	@Column(nullable = false)
-	private Timestamp regDate;								// 등록시간
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	private Date regDate;								// 등록시간
 	
-	@Column(nullable = false)
-	private Timestamp modDate;								// 수정시간
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	private Date modDate;								// 수정시간
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="bit(1) default 0")
 	private boolean isDeleted;								// 논리삭제 여부
 	
 	@Column

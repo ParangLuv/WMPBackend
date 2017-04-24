@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.parangluv.withmypet.board.domain.Board;
-import com.parangluv.withmypet.common.domain.CommonEntity;
+import com.parangluv.withmypet.common.entity.CommonEntity;
 import com.parangluv.withmypet.reply.domain.Reply;
 import com.parangluv.withmypet.user.domain.User;
 
@@ -68,9 +68,9 @@ public class Article extends CommonEntity{
     @Column(name = "ip", nullable = false, length = 255)
     private String ip;										// 게시글 IP정보
 
-	@Column(nullable = false, length=5)
+	@Column(nullable = false, columnDefinition="int(10) default 0")
 	private int hits;										// 조회수
-	@Column(nullable = false, length=5)
+	@Column(nullable = false, columnDefinition="int(10) default 0")
 	private int recommends;									// 추천수
 	@Column(nullable = true)
 	private String attachedFile;							// 첨부파일 이름

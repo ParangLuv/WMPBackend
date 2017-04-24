@@ -15,7 +15,7 @@ import javax.persistence.MapsId;
 
 import com.parangluv.withmypet.article.domain.Article;
 import com.parangluv.withmypet.board.domain.Board;
-import com.parangluv.withmypet.common.domain.CommonEntity;
+import com.parangluv.withmypet.common.entity.CommonEntity;
 import com.parangluv.withmypet.user.domain.User;
 
 import lombok.Data;
@@ -42,10 +42,10 @@ public class Reply extends CommonEntity{
 	@Column(nullable=false, columnDefinition="TEXT")
 	private String content;											// 내용
 	
-	@Column(nullable=false)
+	@Column(nullable = true)
 	private long parentReply;										// 부모댓글
 	
-	@Column(nullable=false)
+	@Column(nullable = false, columnDefinition="bit(1) default 0")
 	private boolean indent;											// 들여쓰기 
 
 }
