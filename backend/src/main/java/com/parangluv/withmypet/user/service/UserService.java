@@ -25,6 +25,19 @@ public class UserService {
 		return this.ur.findAll(pageable);
 	}
 	
+	public User findByUserName(String userName){
+		return this.ur.findByUserName(userName);
+	}
 	
+	public User createUser(User user){
+		return this.ur.save(user);
+	}
 	
+	public User updateUser(User user){
+		return this.ur.save(user);
+	}
+	
+	public void deleteUser(User user){
+		this.ur.delete(user);
+	}
 }
